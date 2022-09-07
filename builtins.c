@@ -209,6 +209,11 @@ int _env(sh_t *data)
 	env_t *temp_node;
 
 	temp_node = env_head;
+	if (data->args[0] == NULL)
+	{
+		data->error_msg = _strdup("invalid command");
+		return (FAIL);
+	}
 	while (temp_node->next != NULL)
 	{
 		printf("%s=%s\n", temp_node->name, temp_node->value);

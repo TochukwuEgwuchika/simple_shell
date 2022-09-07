@@ -46,7 +46,6 @@ env_t *build_env_list(char *env[])
 	first_node->name = strtok(strcpy(malloc(sizeof(env[i])), env[i]), "=");
 	first_node->value = strtok(NULL, "\n");
 	first_node->next = NULL;
-	first_node;
 
 	while (env[++i])
 	{
@@ -67,10 +66,10 @@ char **build_env(void)
 {
 	static char *new_environ[MAXENV];
 	env_t *temp_node;
-	int env_len, name_len, value_len, i;
+	int name_len, value_len, i;
 
 	temp_node = env_head;
-	env_len = name_len = value_len = i = 0;
+	name_len = value_len = i = 0;
 
 	temp_node = env_head;
 	while (temp_node != NULL)
