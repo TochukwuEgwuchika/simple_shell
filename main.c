@@ -172,8 +172,7 @@ int process_cmd(sh_t *data)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		build_env();
-		if (execve(data->cmd, data->args, env_list) < 0)
+		if (execve(data->cmd, data->args, environ) < 0)
 		data->error_msg = _strdup("not found\n");
 			return (FAIL);
 	}
