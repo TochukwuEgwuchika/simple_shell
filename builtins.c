@@ -22,6 +22,13 @@ int change_dir(sh_t *data)
 			return (FAIL);
 		return (SUCCESS);
 	}
+	if (_strcmp(data->args[1], "~") == 0)
+	{
+		SETOWD(data->oldpwd);
+		if (chdir(home) < 0)
+			return (FAIL);
+		return (SUCCESS);
+	}
 	if (_strcmp(data->args[1], "-") == 0)
 	{
 		if (data->oldpwd == 0)
