@@ -2,6 +2,14 @@
 
 extern env_t *env_head;
 
+/**
+ * add_node - adds a new node to the linked list
+ * @head: head node
+ * @name: name of the environment variable
+ * @value: value of the environment variable
+ *
+ * Return: 1 on success -1 on failure
+ */
 int add_node(env_t *head, char *name, char *value)
 {
 	env_t *new, *temp_head;
@@ -22,6 +30,12 @@ int add_node(env_t *head, char *name, char *value)
 	return (SUCCESS);
 }
 
+/**
+ * build_env_list - build a linked list of environment variables
+ * @env: pointer to environment variables
+ *
+ * Return: pointer to the head of the linked list
+ */
 env_t *build_env_list(char *env[])
 {
 	env_t *first_node;
@@ -44,6 +58,11 @@ env_t *build_env_list(char *env[])
 	return (first_node);
 }
 
+/**
+ * build_env - build a list of environemnt variable from linked lis
+ * 
+ * Return: pointer to list of environment variables
+ */
 char **build_env(void)
 {
 	static char *new_environ[MAXENV];
@@ -65,7 +84,6 @@ char **build_env(void)
 		new_environ[i] = strcat(new_environ[i], temp_node->name);
 		new_environ[i] = strcat(new_environ[i], "=");
 		new_environ[i] = strcat(new_environ[i], temp_node->value);
-		/*printf("%s\n", new_environ[i]);*/
 		i++;
 		temp_node = temp_node->next;
 	}
