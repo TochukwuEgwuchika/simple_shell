@@ -166,16 +166,12 @@ int process_cmd(sh_t *data)
 {
 	pid_t pid;
 	int status;
-	char **new_environ;
 
 	pid = fork();
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		new_environ = build_env();
-		if (new_environ == NULL)
-			return (FAIL);
-		if (execve(data->cmd, data->args, new_environ) < 0)
+		if (execve(data->cmd, data->args, environ) < 0)
 		data->error_msg = _strdup("not found\n");
 			return (FAIL);
 	}

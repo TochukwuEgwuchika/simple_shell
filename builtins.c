@@ -239,7 +239,6 @@ int handle_builtin(sh_t *data)
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
 		{"env", _env},
-		{"printenv", _env},
 		{NULL, NULL}
 	};
 	int i = 0;

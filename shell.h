@@ -137,5 +137,6 @@ int _setenv(sh_t *data);
 int _unsetenv(sh_t *data);
 int _env(sh_t *data);
 char **build_env(void);
+char **clone_environ(char **env);
 
 #endif /* SHELL_H */

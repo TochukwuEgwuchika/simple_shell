@@ -39,17 +39,18 @@ int add_node(env_t *head, char *name, char *value)
 env_t *build_env_list(char *env[])
 {
 	env_t *first_node;
-	char *name, *value;
+	char *name, *value, **l_env;
 	int i = 0;
 
+	l_env = clone_environ(env);
 	first_node = malloc(sizeof(env_t));
-	first_node->name = strtok(strcpy(malloc(sizeof(env[i])), env[i]), "=");
+	first_node->name = strtok(strcpy(malloc(sizeof(l_env[i])), l_env[i]), "=");
 	first_node->value = strtok(NULL, "\n");
 	first_node->next = NULL;
 
-	while (env[++i])
+	while (l_env[++i])
 	{
-		name = strtok(env[i], "=");
+		name = strtok(l_env[i], "=");
 		value = strtok(NULL, "\n");
 		add_node(first_node, name, value);
 	}
@@ -58,35 +59,26 @@ env_t *build_env_list(char *env[])
 }
 
 /**
- * build_env - build a list of environemnt variable from linked lis
+ * clone_env - clone the environment varaibles
+ * @environ: the pointer to the evironment variables
  * 
- * Return: pointer to list of environment variables
+ * Return: the pointer to the environment variables
  */
-char **build_env(void)
+char **clone_environ(char **env)
 {
-	static char *new_environ[MAXENV];
-	env_t *temp_node;
-	int name_len, value_len, i;
-
-	temp_node = env_head;
-	name_len = value_len = i = 0;
-
-	temp_node = env_head;
-	while (temp_node != NULL)
+	static char *clone[MAXENV];
+	char **p;
+	int i;
+	
+	p = env;
+	i = 0;
+	while (*p)
 	{
-		name_len = strlen(temp_node->name);
-		value_len = strlen(temp_node->value);
-
-		new_environ[i] = malloc(sizeof(char) * (name_len + value_len + 2));
-		if (new_environ[i] == NULL)
-			return (NULL);
-		new_environ[i] = strcat(new_environ[i], temp_node->name);
-		new_environ[i] = strcat(new_environ[i], "=");
-		new_environ[i] = strcat(new_environ[i], temp_node->value);
+		clone[i] = malloc(sizeof(char) * (strlen(*p) + 1));
+		clone[i] = strcpy(clone[i], *p);
 		i++;
-		temp_node = temp_node->next;
+		p++;
 	}
-
-	new_environ[i] = NULL;
-	return (new_environ);
+	clone[i] = NULL;
+	return (clone);
 }
