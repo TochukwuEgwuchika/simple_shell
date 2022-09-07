@@ -1,6 +1,7 @@
 #include "shell.h"
 
 env_t *env_head;
+char *env_list[MAXENV];
 
 /**
  * main - the main function
@@ -171,7 +172,8 @@ int process_cmd(sh_t *data)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		if (execve(data->cmd, data->args, environ) < 0)
+		build_env();
+		if (execve(data->cmd, data->args, env_list) < 0)
 		data->error_msg = _strdup("not found\n");
 			return (FAIL);
 	}
