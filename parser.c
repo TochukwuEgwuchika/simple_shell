@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * is_path_form - chekc if the given fikenname is a path
+ * is_path_form - check if the given filenname is a path
  * @data: the data strucct pointer
  *
  * Return: (Success)
@@ -17,7 +17,7 @@ int is_path_form(sh_t *data)
 }
 #define DELIMITER ":"
 /**
- * is_short_form - chekc if the given fikenname is short form
+ * is_short_form - check if the given filenname is short form
  * @data: the data strucct pointer
  *
  * Return: (Success)
@@ -63,6 +63,10 @@ int is_builtin(sh_t *data)
 		{"exit", abort_prg},
 		{"cd", change_dir},
 		{"help", display_help},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
+		{"env", _env},
+		{"printenv", _env},
 		{NULL, NULL}
 	};
 	int i = 0;

@@ -1,4 +1,7 @@
 #include "shell.h"
+
+extern env_t *env_head;
+
 /**
  * _getenv - gets the path
  * @path_name: a pointer to the struct of data
@@ -6,7 +9,7 @@
  * Return: (Success) a positive number
  * ------- (Fail) a negative number
  */
-char *_getenv(char *path_name)
+/*char *_getenv(char *path_name)
 {
 	char **environ_cursor, *env_ptr, *name_ptr;
 
@@ -26,6 +29,21 @@ char *_getenv(char *path_name)
 			return (env_ptr + 1);
 		environ_cursor++;
 	}
+	return (NULL);
+}*/
+char *_getenv(char *path_name)
+{
+	env_t *temp_node;
+
+	temp_node = env_head;
+	while (temp_node->next != NULL)
+	{
+		if (strcmp(temp_node->name, path_name) == 0)
+			return (temp_node->value);
+		temp_node = temp_node->next;
+	}
+	if (strcmp(temp_node->name, path_name) == 0)
+		return (temp_node->value);
 	return (NULL);
 }
 /**

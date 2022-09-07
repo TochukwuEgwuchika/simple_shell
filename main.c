@@ -1,5 +1,7 @@
 #include "shell.h"
 
+env_t *env_head;
+
 /**
  * main - the main function
  *
@@ -13,6 +15,7 @@ int main(void)
 
 	_memset((void *)&data, 0, sizeof(data));
 	signal(SIGINT, signal_handler);
+	env_head = build_env_list(environ);
 	while (1)
 	{
 		index_cmd(&data);
@@ -140,14 +143,14 @@ int split_line(sh_t *data)
  */
 int parse_line(sh_t *data)
 {
-	if (is_path_form(data) > 0)
-		return (SUCCESS);
 	if (is_builtin(data) > 0)
 	{
 		if (handle_builtin(data) < 0)
 			return (FAIL);
 		return (NEUTRAL);
 	}
+	if (is_path_form(data) > 0)
+		return (SUCCESS);
 	is_short_form(data);
 	return (SUCCESS);
 }
@@ -163,12 +166,16 @@ int process_cmd(sh_t *data)
 {
 	pid_t pid;
 	int status;
+	char **new_environ;
 
 	pid = fork();
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		if (execve(data->cmd, data->args, environ) < 0)
+		new_environ = build_env();
+		if (new_environ == NULL)
+			return (FAIL);
+		if (execve(data->cmd, data->args, new_environ) < 0)
 		data->error_msg = _strdup("not found\n");
 			return (FAIL);
 	}
