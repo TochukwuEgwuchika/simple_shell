@@ -16,29 +16,29 @@
 
 ## ASH: The ALX Shell
 The gates of shell is a shell program built during the ALX SE program as a final project for the first trimester, it helps student to understand the advanced
-concepts behind the shell program include process, system call, bit manipulation, file managment, error handling ...
+concepts behind the shell program include process, system call, bit manipulation, file managment, error handling etc...
 
 ## Getting ASH
 In order to install the shell and get benefits of it's features you need to clone the current project, and compile it.
-You need to make sure that this shell tested and garantees work based on `gcc-4.8` and the `C90` standard.
+The shell should be compiled with `gcc-4.8` or new versions of gcc and it adheres to the `C90` standard.
 
 ## Features
 Some of the main featurs of this shell includes - 
 
-* Display a prompt and wait for the user to type a command. A command line always ends with a new line.
+* Displays a prompt and wait for the user to type a command. A command line always ends with a new line.
 * If an executable cannot be found, print an error message and display the prompt again.
 * Handle errors.
-* Hndling the “end of file” condition (Ctrl+D)
-* Hanling the command line with arguments
-* Handle the PATH
-* Support the exit features and the exit status
-* Handle the Ctrl-C to not terminate the shell
+* Handling the “end of file” condition (Ctrl+D)
+* Handling the command line with arguments
+* Handling the PATH
+* Support for the exit features and the exit status
+* Handling the Ctrl-C to not terminate the shell
 * Handling the command seperator `;`
 * Handling `&&` and `||` logical operators
-* Handle variable replacements `$?` and `$$`
-* Handle the comments `#`
-* Support the history feature
-* Support the file input
+* Handling variable replacements `$?` and `$$`
+* Handling the comments `#`
+* Supports the history feature
+* Supports the file input
 
 ## Builtins
 * The exit builtin `exit [STATUS]`
