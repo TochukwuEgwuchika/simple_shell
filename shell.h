@@ -24,7 +24,6 @@ extern char **environ;
 #define SUCCESS (1)
 #define FAIL (-1)
 #define NEUTRAL (0)
-#define MAXENV 500
 /* Struct */
 
 /**
@@ -62,22 +61,6 @@ typedef struct builtin
 	char *cmd;
 	int (*f)(sh_t *data);
 } blt_t;
-/**
- * struct env_s - Environment variable data structure
- * @name: name of the environment variable
- * @value: value of the environment variable
- * @next: pointer to the next environment variable
- *
- * Description: this structure holds information about an environment
- * variable
- */
-typedef struct env_s
-{
-	char *name;
-	char *value;
-	struct env_s *next;
-} env_t;
-
 
 /* ----------Process prototype------------*/
 int _getline(sh_t *);
@@ -129,15 +112,5 @@ int check_builtin(sh_t *data);
 int is_path_form(sh_t *data);
 void is_short_form(sh_t *data);
 int is_builtin(sh_t *data);
-
-/* -----------environ----------------*/
-int add_node(env_t *head, char *name, char *value);
-env_t *build_env_list(char **env);
-int _setenv(sh_t *data);
-int _unsetenv(sh_t *data);
-int _env(sh_t *data);
-char **build_env(void);
-char **clone_environ(char **env);
-void print_env(void);
 
 #endif /* SHELL_H */

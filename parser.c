@@ -63,9 +63,6 @@ int is_builtin(sh_t *data)
 		{"exit", abort_prg},
 		{"cd", change_dir},
 		{"help", display_help},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
-		{"env", _env},
 		{NULL, NULL}
 	};
 	int i = 0;

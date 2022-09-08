@@ -31,21 +31,6 @@ char *_getenv(char *path_name)
 	}
 	return (NULL);
 }
-/*char *_getenv(char *path_name)
-{
-	env_t *temp_node;
-
-	temp_node = env_head;
-	while (temp_node->next != NULL)
-	{
-		if (strcmp(temp_node->name, path_name) == 0)
-			return (temp_node->value);
-		temp_node = temp_node->next;
-	}
-	if (strcmp(temp_node->name, path_name) == 0)
-		return (temp_node->value);
-	return (NULL);
-}*/
 /**
  * signal_handler - handle the process interrept signal
  * @signo: the signal identifier

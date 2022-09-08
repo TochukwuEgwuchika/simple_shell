@@ -1,6 +1,5 @@
 #include "shell.h"
 
-extern env_t *env_head;
 
 #define SETOWD(V) (V = _strdup(_getenv("OLDPWD")))
 /**
@@ -113,117 +112,6 @@ int display_help(sh_t *data)
 	return (SUCCESS);
 }
 /**
- * _setenv - set an environment variable
- * @data: a pointer to the command data structure
- * 
- * Return: (Success) 0 is returned
- * ------  (Fail) -1
- */
-int _setenv(sh_t *data)
-{
-	env_t *temp_node;
-
-	if (data->args[1] == NULL)
-	{
-		data->error_msg = _strdup("Usage: setenv VARIABLE VALUE\n");
-		return (FAIL);
-	}
-
-	if (data->args[2] == NULL)
-	{
-		data->error_msg = _strdup("Usage: setenv VARIABLE VALUE\n");
-		return (FAIL);
-	}
-	
-	temp_node = env_head;
-	while (temp_node->next != NULL)
-	{
-		if (strcmp(temp_node->name, data->args[1]) == 0)
-		{
-			temp_node->value = data->args[2];
-			return (SUCCESS);
-		}
-		temp_node = temp_node->next;
-	}
-	add_node(env_head, data->args[1], data->args[2]);
-	return (SUCCESS);
-}
-
-/**
- * _unsetenv - unset an environment variable
- * @data: a pointer to the command data structure
- *
- * Return: (Success) 0 is returned
- * ------  (Fail) -1
- */
-int _unsetenv(sh_t *data)
-{
-	env_t *temp_node, *prev_node;
-
-	if (data->args[1] == NULL)
-	{
-		data->error_msg = _strdup("Usage: setenv VARIABLE\n");
-		return (FAIL);
-	}
-
-	temp_node = env_head;
-	while (temp_node->next != NULL)
-	{
-		if (strcmp(temp_node->name, data->args[1]) == 0)
-		{
-			if (temp_node == env_head)
-				env_head = env_head->next;
-			else
-			{
-				temp_node = temp_node->next;
-				prev_node->next = temp_node;
-			}
-			return (SUCCESS);
-		}
-		prev_node = temp_node;
-		temp_node = temp_node->next;
-	}
-	if (strcmp(temp_node->name, data->args[1]) == 0)
-	{
-		if (temp_node == env_head)
-			env_head = NULL;
-		else
-		{
-			temp_node = temp_node->next;
-			prev_node->next = temp_node;
-		}
-		return (SUCCESS);
-	}
-	data->error_msg = _strdup("Environment variable does not exist\n");
-	return (FAIL);
-}
-
-/**
- * _env - prints the environment variables
- * @data: data structure of command
- *
- * Return: (SUCCESS) 1
- */
-int _env(sh_t *data)
-{
-	env_t *temp_node;
-
-	temp_node = env_head;
-	if (data->args[0] == NULL)
-	{
-		data->error_msg = _strdup("invalid command");
-		return (FAIL);
-	}
-	while (temp_node->next != NULL)
-	{
-		printf("%s=%s\n", temp_node->name, temp_node->value);
-		temp_node = temp_node->next;
-	}
-
-	printf("%s=%s\n", temp_node->name, temp_node->value);
-	return (SUCCESS);
-}
-/**
  * handle_builtin - handle and manage the builtins cmd
  * @data: a pointer to the data structure
  *
@@ -236,9 +124,6 @@ int handle_builtin(sh_t *data)
 		{"exit", abort_prg},
 		{"cd", change_dir},
 		{"help", display_help},
-		{"setenv", _setenv},
-		{"unsetenv", _unsetenv},
-		{"env", _env},
 		{NULL, NULL}
 	};
 	int i = 0;

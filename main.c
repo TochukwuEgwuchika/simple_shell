@@ -1,6 +1,5 @@
 #include "shell.h"
 
-env_t *env_head;
 /*char *env_list[MAXENV];*/
 
 /**
@@ -16,7 +15,6 @@ int main(void)
 
 	_memset((void *)&data, 0, sizeof(data));
 	signal(SIGINT, signal_handler);
-	env_head = build_env_list(environ);
 	while (1)
 	{
 		index_cmd(&data);
