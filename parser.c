@@ -31,7 +31,7 @@ void is_short_form(sh_t *data)
 
 	path = _getenv("PATH");
 	_path = _strdup(path);
-	token = strtok(_path, DELIMITER);
+	token = _strtok(_path, DELIMITER);
 	while (token)
 	{
 		data->cmd = _strcat(token, data->args[0]);
@@ -41,7 +41,7 @@ void is_short_form(sh_t *data)
 			break;
 		}
 		free(data->cmd);
-		token = strtok(NULL, DELIMITER);
+		token = _strtok(NULL, DELIMITER);
 	}
 	if (exist_flag == 0)
 	{

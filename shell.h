@@ -74,6 +74,7 @@ char *_strcat(char *first, char *second);
 int _strlen(char *str);
 char *_strchr(char *str, char c);
 int _strcmp(char *s1, char *s2);
+char *_strtok(char *str, const char *delim);
 
 /* ----------More String prototype-------*/
 char *_strcpy(char *dest, char *source);
