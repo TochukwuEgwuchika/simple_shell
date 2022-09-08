@@ -1,7 +1,7 @@
 #include "shell.h"
 
-extern env_t *env_head;
-extern char *env_list[MAXENV];
+/*extern env_t *env_head;
+extern char *env_list[MAXENV];*/
 
 /**
  * add_node - adds a new node to the linked list
@@ -11,7 +11,7 @@ extern char *env_list[MAXENV];
  *
  * Return: 1 on success -1 on failure
  */
-int add_node(env_t *head, char *name, char *value)
+/*int add_node(env_t *head, char *name, char *value)
 {
 	env_t *new, *temp_head;
 
@@ -29,7 +29,7 @@ int add_node(env_t *head, char *name, char *value)
 	temp_head->next = new;
 
 	return (SUCCESS);
-}
+}*/
 
 /**
  * build_env_list - build a linked list of environment variables
@@ -37,7 +37,7 @@ int add_node(env_t *head, char *name, char *value)
  *
  * Return: pointer to the head of the linked list
  */
-env_t *build_env_list(char *env[])
+/*env_t *build_env_list(char *env[])
 {
 	env_t *first_node;
 	char *name, *value, **l_env;
@@ -57,14 +57,14 @@ env_t *build_env_list(char *env[])
 	}
 
 	return (first_node);
-}
+}*/
 
 /**
  * build_env - build a list of environment variables
  *
  * Return: a pointer to the list
  */
-char **build_env(void)
+/*char **build_env(void)
 {
 	env_t *temp_node;
 	int i, name_len, value_len;
@@ -91,14 +91,14 @@ char **build_env(void)
 	i++;
 	env_list[i] = NULL;
 	return (env_list);
-}
+}*/
 /**
  * clone_env - clone the environment varaibles
  * @environ: the pointer to the evironment variables
  * 
  * Return: the pointer to the environment variables
  */
-char **clone_environ(char **env)
+/*char **clone_environ(char **env)
 {
 	static char *clone[MAXENV];
 	char **p;
@@ -115,7 +115,7 @@ char **clone_environ(char **env)
 	}
 	clone[i] = NULL;
 	return (clone);
-}
+}*/
 
 /*void print_env(void)
 {

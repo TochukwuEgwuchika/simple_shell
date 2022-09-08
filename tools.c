@@ -1,6 +1,6 @@
 #include "shell.h"
 
-extern env_t *env_head;
+/*extern env_t *env_head;*/
 
 /**
  * _getenv - gets the path
@@ -9,7 +9,7 @@ extern env_t *env_head;
  * Return: (Success) a positive number
  * ------- (Fail) a negative number
  */
-/*char *_getenv(char *path_name)
+char *_getenv(char *path_name)
 {
 	char **environ_cursor, *env_ptr, *name_ptr;
 
@@ -30,8 +30,8 @@ extern env_t *env_head;
 		environ_cursor++;
 	}
 	return (NULL);
-}*/
-char *_getenv(char *path_name)
+}
+/*char *_getenv(char *path_name)
 {
 	env_t *temp_node;
 
@@ -45,7 +45,7 @@ char *_getenv(char *path_name)
 	if (strcmp(temp_node->name, path_name) == 0)
 		return (temp_node->value);
 	return (NULL);
-}
+}*/
 /**
  * signal_handler - handle the process interrept signal
  * @signo: the signal identifier
