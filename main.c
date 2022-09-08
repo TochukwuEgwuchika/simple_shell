@@ -16,7 +16,7 @@ int main(void)
 	while (1)
 	{
 		index_cmd(&data);
-		if (read_line(&data) < 0)
+		if (_getline(&data) < 0)
 		{
 			if (isatty(STDIN_FILENO))
 				PRINT("\n");
@@ -50,13 +50,13 @@ int main(void)
 }
 
 /**
- * read_line - read a line from the standard input
+ * _getline - read a line from the standard input
  * @data: a pointer to the struct of data
  *
  * Return: (Success) a positive number
  * ------- (Fail) a negative number
  */
-int read_line(sh_t *data)
+int _getline(sh_t *data)
 {
 	char *csr_ptr, *end_ptr, c;
 	size_t size = BUFSIZE, read_st, length, new_size;

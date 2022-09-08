@@ -19,7 +19,7 @@ char *_strcpy(char *dest, char *source)
  * _isalpha - check if the input is a letter
  * @c: the character to be checked
  *
- * Return: 1 if letter, 0 otherwise
+ * Return: 1 if letter, -1 otherwise
  */
 int _isalpha(int c)
 {

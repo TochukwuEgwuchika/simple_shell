@@ -63,7 +63,7 @@ typedef struct builtin
 	int (*f)(sh_t *data);
 } blt_t;
 /* ----------Process prototype------------*/
-int read_line(sh_t *);
+int _getline(sh_t *);
 int split_line(sh_t *);
 int parse_line(sh_t *);
 int process_cmd(sh_t *);
