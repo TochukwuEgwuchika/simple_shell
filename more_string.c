@@ -39,3 +39,41 @@ int _isnumber(int c)
 		return (SUCCESS);
 	return (FAIL);
 }
+/**
+ * _strtok - breaks a string into one or more tokens
+ * @str: the given string
+ * @delim: the set of strings to use for delimiting
+ *
+ * Return: (Success) a pointer to the token or null if
+ * there are no more tokens
+ */
+char *_strtok(char *str, const char *delim)
+{
+	static char *p;
+	const char *delim_cpy;
+	char *start;
+
+	if (str != NULL)
+		p = str;
+
+	start = p;
+	while (*p)
+	{
+		delim_cpy = delim;
+		while (*delim_cpy)
+		{
+			if (*delim_cpy == *p)
+			{
+				*p = '\0';
+				p++;
+				return (start);
+			}
+			delim_cpy++;
+		}
+		p++;
+	}
+	if (*p == '\0')
+		return (NULL);
+
+	return (start);
+}
