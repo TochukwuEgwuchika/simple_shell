@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*extern env_t *env_head;*/
+extern env_t *env_head;
 
 #define SETOWD(V) (V = _strdup(_getenv("OLDPWD")))
 /**
@@ -119,7 +119,7 @@ int display_help(sh_t *data)
  * Return: (Success) 0 is returned
  * ------  (Fail) -1
  */
-/*int _setenv(sh_t *data)
+int _setenv(sh_t *data)
 {
 	env_t *temp_node;
 
@@ -147,7 +147,7 @@ int display_help(sh_t *data)
 	}
 	add_node(env_head, data->args[1], data->args[2]);
 	return (SUCCESS);
-}*/
+}
 
 /**
  * _unsetenv - unset an environment variable
@@ -156,7 +156,7 @@ int display_help(sh_t *data)
  * Return: (Success) 0 is returned
  * ------  (Fail) -1
  */
-/*int _unsetenv(sh_t *data)
+int _unsetenv(sh_t *data)
 {
 	env_t *temp_node, *prev_node;
 
@@ -196,7 +196,7 @@ int display_help(sh_t *data)
 	}
 	data->error_msg = _strdup("Environment variable does not exist\n");
 	return (FAIL);
-}*/
+}
 
 /**
  * _env - prints the environment variables
@@ -204,7 +204,7 @@ int display_help(sh_t *data)
  *
  * Return: (SUCCESS) 1
  */
-/*int _env(sh_t *data)
+int _env(sh_t *data)
 {
 	env_t *temp_node;
 
@@ -222,7 +222,7 @@ int display_help(sh_t *data)
 
 	printf("%s=%s\n", temp_node->name, temp_node->value);
 	return (SUCCESS);
-}*/
+}
 /**
  * handle_builtin - handle and manage the builtins cmd
  * @data: a pointer to the data structure
@@ -236,9 +236,9 @@ int handle_builtin(sh_t *data)
 		{"exit", abort_prg},
 		{"cd", change_dir},
 		{"help", display_help},
-		/*{"setenv", _setenv},
+		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
-		{"env", _env},*/
+		{"env", _env},
 		{NULL, NULL}
 	};
 	int i = 0;
