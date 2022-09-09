@@ -8,9 +8,8 @@
  */
 int is_path_form(sh_t *data)
 {
-	struct stat st;
 
-	if (_strchr(data->args[0], '/') != 0 && (stat(data->args[0], &st) == 0))
+	if (_strchr(data->args[0], '/') != 0)
 	{
 		data->cmd = _strdup(data->args[0]);
 		return (SUCCESS);
@@ -25,17 +24,12 @@ int is_path_form(sh_t *data)
  * Return: (Success)
  * ------- (Fail) otherwise
  */
-int is_short_form(sh_t *data)
+void is_short_form(sh_t *data)
 {
 	char *path, *token, *_path;
 	struct stat st;
 	int exist_flag = 0;
 
-	if (strchr(data->args[0], '/') != 0 && (stat(data->args[0], &st) != 0))
-	{
-		data->error_msg = strdup("Invalid command\n");
-		return (FAIL);
-	}
 	path = _getenv("PATH");
 	_path = _strdup(path);
 	token = _strtok(_path, DELIMITER);
@@ -55,7 +49,6 @@ int is_short_form(sh_t *data)
 		data->cmd = _strdup(data->args[0]);
 	}
 	free(_path);
-	return (SUCCESS);
 }
 #undef DELIMITER
 /**

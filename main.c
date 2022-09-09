@@ -151,9 +151,8 @@ int parse_line(sh_t *data)
 	}
 	if (is_path_form(data) > 0)
 		return (SUCCESS);
-	if (is_short_form(data) > 0)
-		return (SUCCESS);
-	return (FAIL);
+	is_short_form(data);
+	return (SUCCESS);
 }
 #undef DELIMITER
 /**
